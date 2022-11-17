@@ -3,46 +3,55 @@
 
 Example：
 ```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
 <body>
     <div>
         导出文件名：<input id="fileName" type="text" />
         导出数据条数：<input id="dataCounts" type="text" />
         <button id="TableExport">TableExportTest</button>
     </div>
-    <script src="/Includes/Json2Excel/Json2Excel.js"></script>
+    <script src="/IView/Includes/Json2Excel/Json2Excel.js"></script>
     <script>
         var jsonData = {
-            "headers": [
-                "标题1",
-                "标题2",
-                "标题3",
-                "标题4",
-                "标题5",
-                "标题6",
-                "标题7",
-                "标题8"
-            ],
-            "dataList": []
+            "headers": {
+                "title1": "标题1",
+                "title2": "标题2",
+                "title3": "标题3",
+                "title4": "标题4",
+                "title5": "标题5",
+                "title6": "标题6",
+                "title7": "标题7",
+                "title8":"标题8"
+            },
+            "datalist": []
         }
 
         document.getElementById('TableExport').addEventListener("click", () => {
             for (let i = 1; i < Number(document.getElementById('dataCounts').value); i++) {
-                jsonData.dataList.push(
+                jsonData.datalist.push(
                     {
-                        "标题1": i,
-                        "标题2": "10.2",
-                        "标题3": "内容" + i,
-                        "标题4": "内容" + i,
-                        "标题5": "内容" + i,
-                        "标题6": "内容" + i,
-                        "标题7": "内容" + i,
-                        "标题8": "内容" + i
+                        "title1": i,
+                        "title2": "10.3342",
+                        "title3": "内容" + i,
+                        "title4": "内容" + i,
+                        "title5": "内容" + i,
+                        "title6": "内容" + i,
+                        "title8": "内容" + i
                     }
                 );
             }
             let fileName = document.getElementById('fileName').value;
-            Json2Excel(jsonData, fileName);
-        });
+            let ext = "<tr><td>费用总额：</td><td colspan='7' style='text-align:center'>￥3500.98</td></tr>";
+            Json2Excel(jsonData, fileName, ext);
+        });    
     </script>
 </body>
+</html>
 ```

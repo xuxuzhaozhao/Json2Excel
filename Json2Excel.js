@@ -31,11 +31,13 @@ function Json2Excel(jsonData, fileName, extension) {
         dataTemplate += "<tr>";
         headerTitles.forEach(title => {
             let currentValue = data[title] || "";
-            let msoFormat = '@'; // 字符串格式
-            if (!isNaN(currentValue)) { // 数字格式
-                msoFormat = currentValue.toString().indexOf('.') > -1 ? '0\\.00' : '0';
+            if (title == 'image') {
+                dataTemplate += insertImage(currentValue);
+            } else {
+                let msoFormat = '@'; // 字符串格式
+                if (!isNaN(currentValue)) msoFormat = currentValue.toString().indexOf('.') > -1 ? '0\\.00' : '0'; // 数字格式
+                dataTemplate += `<td style='mso-number-format:"${msoFormat}"; text-align:right;' class='tdRight'>${currentValue}</td>`;
             }
-            dataTemplate += `<td style='mso-number-format:"${msoFormat}"; text-align:right;' class='tdRight'>${currentValue}</td>`;
         });
         dataTemplate += "</tr>";
     });
@@ -52,4 +54,9 @@ function Json2Excel(jsonData, fileName, extension) {
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
+
+    // 接受http或https作为img的src
+    function insertImage(src, width = 40, height = 60) {
+        return `<td style="width:${width}px; height:${height}px; text-align:center; vertical-align:middle"><img src="${src}" width=${width} height=${height}></td>`;
+    }
 }

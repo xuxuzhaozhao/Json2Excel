@@ -4,7 +4,7 @@
  * @param fileName 导出的文件名称 (不要填写扩展名)，如果没有填写，则默认为‘ecrfplus.xls’
  * @param extension '<tr><td colspan='2'>可自定义最后一行数据<td></tr>' (非必填参数)
  * @example Json2Excel(jsonData, 'ecrfplus')
- * @author xucy@ecrfplus.com
+ * @author xuxuzhaozhao87@gmail.com
  */
 function Json2Excel(jsonData, fileName, extension) {
     let excelTemplate = `

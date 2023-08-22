@@ -40,7 +40,7 @@ function Json2Excel(jsonData, fileName, extension) {
                     textAlign = "right";
                     msoFormat = currentValue.toString().indexOf('.') > -1 ? '0\\.00' : '0'; // 数字格式
                 }
-                dataTemplate += `<td style='mso-number-format:"${msoFormat}"; text-align:right;' class='tdRight'>${currentValue}</td>`;
+                dataTemplate += `<td style='mso-number-format:"${msoFormat}"; text-align:${textAlign};' class='tdRight'>${currentValue}</td>`;
             }
         });
         dataTemplate += "</tr>";

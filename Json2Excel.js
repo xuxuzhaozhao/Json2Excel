@@ -35,7 +35,11 @@ function Json2Excel(jsonData, fileName, extension) {
                 dataTemplate += insertImage(currentValue);
             } else {
                 let msoFormat = '@'; // 字符串格式
-                if (!isNaN(currentValue)) msoFormat = currentValue.toString().indexOf('.') > -1 ? '0\\.00' : '0'; // 数字格式
+                let textAlign = "left";
+                if (!isNaN(currentValue)) {
+                    textAlign = "right";
+                    msoFormat = currentValue.toString().indexOf('.') > -1 ? '0\\.00' : '0'; // 数字格式
+                }
                 dataTemplate += `<td style='mso-number-format:"${msoFormat}"; text-align:right;' class='tdRight'>${currentValue}</td>`;
             }
         });
